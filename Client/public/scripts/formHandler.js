@@ -1,5 +1,5 @@
 //Handle form submissions
-import { addPlant } from "./api.js";                                    //Import the POST request function from api.js
+import { addPlant } from './api.js';                                    //Import the POST request function from api.js
 
 const form = document.getElementById("plant-form");                     //Get the form element by its ID
 

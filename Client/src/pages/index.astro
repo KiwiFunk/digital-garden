@@ -1,9 +1,9 @@
 ---
 import "../styles/styles.css";                          // In Astro, you import CSS files directly
-import "../scripts/formHandler.js";                     // Import Server-side scripts from src/scripts
+// Import any Server-side scripts from src/scripts
 import PlantList from "../components/PlantList.astro";
 import AddPlantForm from "../components/AddPlantForm.astro";
-import { getPlants } from "../scripts/api.js";
+import { getPlants } from "../../public/scripts/api.js";
 
 const plants = await getPlants();                       // Get plant data from API
 ---
@@ -17,8 +17,10 @@ const plants = await getPlants();                       // Get plant data from A
   <body>
     <h1>Welcome to Your Digital Garden 🌱</h1>
     <AddPlantForm />
-    <PlantList plants={plants} /> {/* Pass plant data as prop to PlantList component */} 
-    <script></script>             {/* Import scripts from Public that should be rendered Client Side */} 
+    <PlantList plants={plants} />                 {/* Pass plant data as prop to PlantList component */} 
+    
+    {/* Import scripts from Public that should be rendered Client Side */} 
+    <script src="/scripts/formHandler.js" type="module"></script> 
   </body>
 
 </html>
