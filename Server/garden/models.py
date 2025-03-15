@@ -33,13 +33,13 @@ class Plant(models.Model):                                  # Define our model c
         (30, 'Monthly'),
     ]
 
-    watering_frequency = models.FloatField(                 # CHANGE TO INTEGERFIELD AFTER REMOVING DEBUG FREQUENCY_CHOICE
+    watering_frequency = models.FloatField(                 # How often the plant should be watered. (CHANGE TO INTEGERFIELD AFTER REMOVING DEBUG FREQUENCY_CHOICE)
         choices=FREQUENCY_CHOICES,                          # Set the choices for watering frequency
         default=7,                                          # Set the default watering frequency to weekly
         help_text="How often the plant should be watered"   # Help text for Django admin
     )
 
-    def water_plant(self):                                  # Define a method to water the plant
+    def water_plant(self):                                  # Method to update the last watered timestamp
         self.last_watered = timezone.now()                  # Set the last watered date to the current date
         self.save()                                         # Save the updated plant object
 
