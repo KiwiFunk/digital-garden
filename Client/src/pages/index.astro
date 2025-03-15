@@ -2,11 +2,11 @@
 const response = await fetch("http://127.0.0.1:8000/api/plants/");
 const plants = await response.json();
 ---
+
 <html>
   <head>
     <title>Digital Garden</title>
     <style>
-      /* Add some basic styles */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -16,7 +16,21 @@ const plants = await response.json();
       }
       h1 {
         text-align: center;
+      }
+      form {
         margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      form input,
+      form select,
+      form button {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
       }
       ul {
         list-style-type: none;
@@ -33,12 +47,58 @@ const plants = await response.json();
   </head>
   <body>
     <h1>Welcome to Your Digital Garden 🌱</h1>
+
+    <!-- Add Plant Form -->
+    <form id="plant-form">
+      <input type="text" id="name" placeholder="Plant Name" required />
+      <select id="growth_stage">
+        <option value="Seed">Seed</option>
+        <option value="Sapling">Sapling</option>
+        <option value="Blooming">Blooming</option>
+        <option value="Full Grown">Full Grown</option>
+      </select>
+      <textarea id="notes" placeholder="Notes (optional)" rows="3"></textarea>
+      <button type="submit">Add Plant</button>
+    </form>
+
+    <!-- Display Plants -->
     <ul>
-      {plants.map((plant) => (
-        <li>
-          <strong>{plant.name}</strong> - {plant.growth_stage}
-        </li>
-      ))}
+      {
+        plants.map((plant) => (
+          <li>
+            <strong>{plant.name}</strong> - {plant.growth_stage}
+            <p>{plant.notes}</p>
+          </li>
+        ))
+      }
     </ul>
+
+    <script defer>
+      const form = document.getElementById("plant-form");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Prevent page reload
+
+        // Gather form data
+        const name = document.getElementById("name").value;
+        const growth_stage = document.getElementById("growth_stage").value;
+        const notes = document.getElementById("notes").value;
+
+        // Send POST request to Django API
+        const response = await fetch("http://127.0.0.1:8000/api/plants/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, growth_stage, notes }),
+        });
+
+        if (response.ok) {
+          alert("Plant added successfully!");
+          window.location.reload(); // Reload the page to fetch the updated list
+        } else {
+          alert("Failed to add plant. Please try again.");
+        }
+      });
+    </script>
   </body>
 </html>
