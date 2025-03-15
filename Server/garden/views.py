@@ -4,7 +4,7 @@ from rest_framework.response import Response                        #DRF utility
 from rest_framework import status                                   #DRF utility for returning HTTP status codes
 from .models import Plant                                           #Import the Plant model
 from .serializers import PlantSerializer                            #Translate objects to JSON and vice versa
-
+    
 class PlantList(APIView):
     def get(self, request):
         plants = Plant.objects.all()                                #Fetch all the plants from the database
@@ -45,3 +45,28 @@ class PlantDetail(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Plant.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    """
+    Water a plant by sending a POST request to /api/plants/{id}/ with the following body:
+    {
+        "action": "water"
+    }
+    """
+    def post(self, request, pk):                                    #Water selected plant by sending a POST request
+        try:
+            plant = Plant.objects.get(pk=pk)                        #Fetch the plant with the given primary key
+            action = request.data.get('action')                     #Get the action key from the request data
+
+            if action == 'water':                                   #If the action is 'water'
+                plant.water_plant()                                 #Execute the water_plant method
+                return Response({                                   #Return a success message and the last watered date
+                    'status': 'plant watered',
+                    'last_watered': plant.last_watered
+                })
+            return Response(                                        #Return an error if the action is invalid
+                {'error': 'Invalid action'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        except Plant.DoesNotExist:                                  #Return a 404 if the plant does not exist
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
