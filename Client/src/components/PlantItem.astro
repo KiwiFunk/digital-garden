@@ -3,7 +3,7 @@
 const { plant } = Astro.props;                         // Destructure plants prop                     
 ---
 
-<li>
-    <strong>{plant.name}</strong> - {plant.growth_stage}    {/* Display plant name and growth stage */}
+<span class="plant-card">                               
+    <h3>{plant.name}</h3> - {plant.growth_stage}            {/* Display plant name and growth stage */}
     <p>{plant.notes}</p>                                    {/* Display plant notes */}
-</li>
+</span>

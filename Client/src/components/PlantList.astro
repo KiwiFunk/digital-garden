@@ -4,8 +4,8 @@ import PlantItem from "./PlantItem.astro";              // Import PlantItem comp
 const { plants } = Astro.props;                         // Destructure plants prop from props object
 ---
 
-<ul>
+<div class="plant-container">
   {plants.map((plant) => (                              // Loop through plants array
     <PlantItem plant={plant} />                         // Pass plant data to PlantItem component
   ))}
-</ul>
+</div>
