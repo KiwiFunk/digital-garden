@@ -1,20 +1,23 @@
 ---
+import "../styles/styles.css";                          // In Astro, you import CSS files directly
 import PlantList from "../components/PlantList.astro";
 import AddPlantForm from "../components/AddPlantForm.astro";
 import { getPlants } from "../scripts/api.js";
 
-const plants = await getPlants();
+const plants = await getPlants();                       // Get plant data from API
 ---
 
 <html>
+
   <head>
     <title>Digital Garden</title>
-    <link rel="stylesheet" href="../styles/styles.css" />
   </head>
+
   <body>
     <h1>Welcome to Your Digital Garden 🌱</h1>
     <AddPlantForm />
     <PlantList plants={plants} />
     <script type="module" src="../scripts/formHandler.js"></script>
   </body>
+
 </html>
