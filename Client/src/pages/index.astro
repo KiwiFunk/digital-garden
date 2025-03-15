@@ -16,7 +16,7 @@ const plants = await getPlants();                       // Get plant data from A
   <body>
     <h1>Welcome to Your Digital Garden 🌱</h1>
     <AddPlantForm />
-    <PlantList plants={plants} />
+    <PlantList plants={plants} /> {/* Pass plant data as prop to PlantList component */} 
     <script type="module" src="../scripts/formHandler.js"></script>
   </body>
 

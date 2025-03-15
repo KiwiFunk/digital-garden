@@ -1,7 +1,7 @@
 ---
 // Component for displaying and containing plant data
 import PlantItem from "./PlantItem.astro";              // Import PlantItem component
-export const plants = [];                               // Array to hold plant data
+const { plants } = Astro.props;                         // Destructure plants prop from props object
 ---
 
 <ul>

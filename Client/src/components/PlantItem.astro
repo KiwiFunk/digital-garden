@@ -1,10 +1,9 @@
 ---
 //Component for displaying and styling individual plant items
-export const plant = { name: "", growth_stage: "", notes: "" };                                   
-//Initialise plant object with default values to prevent errors by ensuring they exist when the component is accessed
+const { plant } = Astro.props;                         // Destructure plants prop                     
 ---
 
 <li>
-    <strong>{plant.name}</strong> - {plant.growth_stage}    // Display plant name and growth stage
-    <p>{plant.notes}</p>                                    // Display plant notes
+    <strong>{plant.name}</strong> - {plant.growth_stage}    {/* Display plant name and growth stage */}
+    <p>{plant.notes}</p>                                    {/* Display plant notes */}
 </li>
