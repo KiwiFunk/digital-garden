@@ -1,1 +1,15 @@
+---
 //Component to hold the 'Add Plant' form
+---
+
+<form id="plant-form">
+  <input type="text" id="name" placeholder="Plant Name" required />
+  <select id="growth_stage">
+    <option value="Seed">Seed</option>
+    <option value="Sapling">Sapling</option>
+    <option value="Blooming">Blooming</option>
+    <option value="Full Grown">Full Grown</option>
+  </select>
+  <textarea id="notes" placeholder="Notes (optional)" rows="3"></textarea>
+  <button type="submit">Add Plant</button>
+</form>
