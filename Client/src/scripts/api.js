@@ -1,0 +1,1 @@
+//JS to handle API calls (POST, GET, PUT, DELETE)
