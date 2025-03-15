@@ -1,1 +1,10 @@
+---
 // Component for displaying and containing plant data
+export const plants = [];                               // Array to hold plant data
+---
+
+<ul>
+  {plants.map((plant) => (                              // Loop through plants array
+    <PlantItem plant={plant} />                         // Pass plant data to PlantItem component
+  ))}
+</ul>
