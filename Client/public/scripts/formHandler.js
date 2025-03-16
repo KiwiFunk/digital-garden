@@ -7,10 +7,16 @@ form.addEventListener("submit", async (e) => {                          //Add  e
   e.preventDefault();                                                   //Prevent the default form submission (Causes page reload)
 
   const name = document.getElementById("name").value;                   //Get the values from our input fields
-  const growth_stage = document.getElementById("growth_stage").value;
+  const botanical_name = document.getElementById("botanical_name").value;                  
+  const watering_frequency = document.getElementById("watering_frequency").value;
   const notes = document.getElementById("notes").value;
 
-  const success = await addPlant({ name, growth_stage, notes });        //Call addPlant and pass the form data as an object
+  const success = await addPlant({                                      //Call the addPlant function with the form data    
+    name, 
+    botanical_name, 
+    notes, 
+    watering_frequency 
+  });        
 
   if (success) {                                                        //addPlant returns a bool, use to check if the request was successful   
     alert("Plant added successfully!");                                 //Alert the user that the plant was added

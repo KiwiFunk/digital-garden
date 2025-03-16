@@ -4,11 +4,14 @@
 
 <form id="plant-form">
   <input type="text" id="name" placeholder="Plant Name" required />
-  <select id="growth_stage">
-    <option value="Seed">Seed</option>
-    <option value="Sapling">Sapling</option>
-    <option value="Blooming">Blooming</option>
-    <option value="Full Grown">Full Grown</option>
+  <input type="text" id="botanical_name" placeholder="Botanical name (Optional)" />
+  <select id="watering_frequency">
+    <option value="0.000694">DEBUG(1 min)</option>
+    <option value="1">1 Day</option>
+    <option value="2">2 Days</option>
+    <option value="7">7 Days</option>
+    <option value="14">14 Days</option>
+    <option value="30">30 Days</option>
   </select>
   <textarea id="notes" placeholder="Notes (optional)" rows="3"></textarea>
   <button type="submit">Add Plant</button>

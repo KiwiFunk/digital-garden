@@ -400,3 +400,7 @@ FodyWeavers.xsd
 
 # User
 docs/planning/
+*.pyc
+__pycache__
+db.sqlite3
+.env
