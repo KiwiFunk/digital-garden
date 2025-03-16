@@ -4,40 +4,31 @@ from datetime import timedelta
 
 class Plant(models.Model):                                  # Define our model class named 'Plant'
     name = models.CharField(max_length=50)                  # Name of the plant. CharField is used to store strings
-    scientific_name = models.CharField(max_length=100)      # Scientific name of the plant
-    date_planted = models.DateField(auto_now_add=True)      # Date the plant was planted set to current date
-    growth_stage = models.CharField(
-        max_length=50,
-        choices=[                                           # The choices field is used to limit the possible values of the field                      
-            ('Seed', 'Seed'),                               # The first tuple value is the value stored in the database               
-            ('Sapling', 'Sapling'),                         # The second tuple value is the human-readable value seen in forms etc
-            ('Blooming', 'Blooming'),
-            ('Fully Grown', 'Fully Grown'),
-        ],
-        default='Seed'                                      # The default value of the field
-    )
+    scientific_name = models.CharField(                     # Scientific name of the plant (Optional)
+        max_length=100, 
+        default=""
+    )     
+    date_added = models.DateField(auto_now_add=True)        # Date the plant was added
     notes = models.TextField(blank=True, null=True)         # Optional notes about the plant
+
+    watering_frequency = models.FloatField(                 # How often the plant should be watered
+        choices=[
+            (0.000694, 'Debug (1 min)'),                    # 1/1440 (minutes in a day) Remove for production, change to IntegerField
+            (1, 'Daily'),                                   # The first tuple value is the value stored in the database
+            (2, 'Every 2 days'),                            # The second tuple value is the human-readable value seen in forms etc
+            (7, 'Weekly'),
+            (14, 'Bi-weekly'),
+            (30, 'Monthly'),
+        ],
+        default=7,                                          # Default watering frequency is weekly
+        help_text="How often the plant should be watered"   # Help text for Django admin
+    )
 
     last_watered = models.DateField(                        # Date the plant was last watered
         blank=True, 
         null=True, 
         help_text="When the plant was last watered"
     )  
-
-    FREQUENCY_CHOICES = [                                   # Define a list of choices for watering frequency
-        (0.000694, 'Debug (1 min)'),  # 1/1440 (minutes in a day)
-        (1, 'Daily'),
-        (2, 'Every 2 days'),
-        (7, 'Weekly'),
-        (14, 'Bi-weekly'),
-        (30, 'Monthly'),
-    ]
-
-    watering_frequency = models.FloatField(                 # How often the plant should be watered. (CHANGE TO INTEGERFIELD AFTER REMOVING DEBUG FREQUENCY_CHOICE)
-        choices=FREQUENCY_CHOICES,                          # Set the choices for watering frequency
-        default=7,                                          # Set the default watering frequency to weekly
-        help_text="How often the plant should be watered"   # Help text for Django admin
-    )
 
     def water_plant(self):                                  # Method to update the last watered timestamp
         self.last_watered = timezone.now()                  # Set the last watered date to the current date
