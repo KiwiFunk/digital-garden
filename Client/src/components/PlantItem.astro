@@ -11,7 +11,7 @@ const { plant } = Astro.props;                                  // Destructure p
     
     <div class="lower-card">
         <p>{plant.notes}</p>                                    {/* Display plant notes */}
-        <p>Last watered on: {plant.last_watered}</p>
+        <p>Last watered on: {String(plant.last_watered).slice(0, 10)}</p>
     </div>
 
     <div class="card-controls">
