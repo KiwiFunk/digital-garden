@@ -34,6 +34,21 @@ class Plant(models.Model):                                  # Define our model c
         self.last_watered = timezone.now()                  # Set the last watered date to the current date
         self.save()                                         # Save the updated plant object
 
+    def get_water_level(self):
+        """Returns water level as a percentage (0-100)"""
+        if self.last_watered is None:
+            return 0
+            
+        # Calculate time elapsed since last watering
+        time_since_watering = timezone.now() - self.last_watered
+        # Convert watering frequency to minutes
+        frequency_in_minutes = self.watering_frequency * 1440
+        # Calculate how much time has passed as a percentage of the watering frequency
+        elapsed_percentage = (time_since_watering.total_seconds() / 60) / frequency_in_minutes
+        # Convert to remaining water percentage (100% - elapsed%)
+        water_level = max(0, 100 - (elapsed_percentage * 100))
+        return int(round(water_level, 1))
+
     @property                                               # Decorator to define a property
     def needs_watering(self):                               # Check if the plant needs watering
         if self.last_watered is None:                       # If the plant has never been watered

@@ -5,6 +5,11 @@ import { waterPlant } from "./api.js";
 const deleteButtons = document.querySelectorAll(".delete-button");
 const waterButtons = document.querySelectorAll(".water-button");
 
+document.addEventListener("DOMContentLoaded", () => {
+    updateWaterLevels();
+}
+);
+
 // Add event listener to each delete button
 deleteButtons.forEach(button => {
     button.addEventListener("click", async (e) => {
@@ -30,6 +35,7 @@ waterButtons.forEach(button => {
 
         if (success) {
             alert("Plant watered successfully!");
+            updateWaterLevels();
             window.location.reload();
         } else {
             alert("Failed to water plant. Please try again.");
@@ -37,3 +43,25 @@ waterButtons.forEach(button => {
 
     });
 });
+
+function updateWaterLevels() {
+    const plantCards = document.querySelectorAll('.plant-card');
+    
+    plantCards.forEach(card => {
+        const waterIndicator = card.nextElementSibling;
+        const waterLevel = waterIndicator.querySelector('.water-level');
+        const level = waterLevel.dataset.level;
+        
+        // Update the height based on water level percentage
+        waterLevel.style.height = `${level}%`;
+        
+        // Update color based on level
+        if (level < 25) {
+            waterLevel.style.backgroundColor = '#ff4444';
+        } else if (level < 50) {
+            waterLevel.style.backgroundColor = '#ffaa44';
+        } else {
+            waterLevel.style.backgroundColor = '#27b0ffc2';
+        }
+    });
+}
