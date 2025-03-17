@@ -1,45 +1,127 @@
+/* FONT IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Quicksand:wght@300..700&display=swap');
+
+/* VARIABLES */
+:root {
+    --primary-color: #7f9261;
+    --secondary-color: #c0c0c0;
+    --accent-color: #353535;
+}
+
+/* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'quicksand', Arial, sans-serif;
     background-color: #353535;
     color: #cccccc;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  form {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'comfortaa', Arial, sans-serif;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
     margin: 0 auto;
-  }
-  
-  form input, form select, form textarea, form button {
+}
+
+form input,
+form select,
+form textarea,
+form button {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .plant-card {
+}
+
+.plant-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    width: 90%;
+}
+
+.plant-card {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
+    position: relative;
 
-    max-width: 500px;
-    
+    min-width: 300px;
+    min-height: 360px;
 
-    
     background: #7f9261;
     border: 1px solid #c0c0c0;
     border-radius: 5px;
     margin: 10px 0;
     padding: 10px;
-  }
-  
+}
+
+.plant-card .upper-card {
+    align-self: flex-start;
+    flex-grow: 2;
+    width: 100%;
+}
+
+.plant-card .lower-card {
+    align-self: flex-end;
+    flex-grow: 1;
+    width: 100%;
+
+    /* Keep text content aligned to the bottom of the box */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.plant-card h3 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    max-width: 70%;             /* Make sure header never overlaps card buttons */
+}
+
+.plant-card h4 {
+    font-weight: 300;
+}
+
+.card-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    display: block;
+    border-radius: 10px;
+    min-width: 55px;
+    min-height: 55px;
+    padding: 0;      
+    border: none;    
+    cursor: pointer; 
+}
+
+.delete-button {
+    background-color: rgb(230, 42, 42);
+}
+
+.water-button {
+    background-color: rgb(43, 174, 235);
+}

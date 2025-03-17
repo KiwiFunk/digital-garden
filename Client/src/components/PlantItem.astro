@@ -1,9 +1,21 @@
 ---
 //Component for displaying and styling individual plant items
-const { plant } = Astro.props;                         // Destructure plants prop                     
+const { plant } = Astro.props;                                  // Destructure plants prop                     
 ---
 
-<span class="plant-card">                               
-    <h3>{plant.name}</h3> - {plant.growth_stage}            {/* Display plant name and growth stage */}
-    <p>{plant.notes}</p>                                    {/* Display plant notes */}
+<span class="plant-card">
+    <div class="upper-card">
+        <h3>{plant.name}</h3>                                   {/* Display plant name */}
+        <h4>{plant.botanical_name}</h4>                         {/* Display plant botanical name */}
+    </div>                               
+    
+    <div class="lower-card">
+        <p>{plant.notes}</p>                                    {/* Display plant notes */}
+        <p>Last watered on: {plant.last_watered}</p>
+    </div>
+
+    <div class="card-controls">
+        <span class="btn delete-button">Delete</span>
+        <span class="btn water-button">Water</span>
+    </div>
 </span>
