@@ -15,7 +15,7 @@ const { plant } = Astro.props;                                  // Destructure p
     </div>
 
     <div class="card-controls">
-        <span class="btn delete-button">Delete</span>
+        <span class="btn delete-button" data-id={plant.id}>Delete</span> 
         <span class="btn water-button">Water</span>
     </div>
 </span>

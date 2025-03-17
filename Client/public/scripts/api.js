@@ -17,3 +17,11 @@ export async function addPlant(data) {
   });
   return response.ok;                                       //Return a boolean indicating if the request was successful
 }
+
+//Perform a DELETE request to remove a plant from the database
+export async function deletePlant(id) {
+  const response = await fetch(`${API_URL}${id}/`, {       //Use fetch with the plant ID to send a DELETE request
+    method: "DELETE",                                       //Set the method to DELETE
+  });
+  return response.ok;                                       //Return a boolean indicating if the request was successful
+}
