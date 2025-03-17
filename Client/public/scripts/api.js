@@ -25,3 +25,15 @@ export async function deletePlant(id) {
   });
   return response.ok;                                       //Return a boolean indicating if the request was successful
 }
+
+//Send a POST request to water a plant using the water_plant() function
+export async function waterPlant(id) {
+  const response = await fetch(`${API_URL}${id}/`, {        
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ "action": "water" }),                                       
+  });
+  return response.ok;
+}

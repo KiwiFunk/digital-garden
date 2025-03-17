@@ -24,7 +24,7 @@ class Plant(models.Model):                                  # Define our model c
         help_text="How often the plant should be watered"   # Help text for Django admin
     )
 
-    last_watered = models.DateField(                        # Date the plant was last watered
+    last_watered = models.DateTimeField(                    # Date the plant was last watered
         blank=True, 
         null=True, 
         help_text="When the plant was last watered"
