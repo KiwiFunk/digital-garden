@@ -52,7 +52,7 @@ class PlantDetail(APIView):
         try:
             plant = Plant.objects.get(pk=pk)                        #Fetch the plant with the given primary key
             return Response({                                       #Return the water level of the plant
-                'water_level': plant.water_level
+                'water_level': plant.water_level,
                 'last_watered': plant.last_watered
             })
         except Plant.DoesNotExist:                                  #Return a 404 if the plant does not exist

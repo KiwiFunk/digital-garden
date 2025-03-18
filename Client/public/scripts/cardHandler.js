@@ -1,5 +1,6 @@
 import { deletePlant } from "./api.js";
 import { waterPlant } from "./api.js";
+import { getWaterLevel } from './api.js';
 
 // Use querySelectorAll to get all buttons of each type
 const deleteButtons = document.querySelectorAll(".delete-button");
@@ -47,24 +48,28 @@ waterButtons.forEach(button => {
     });
 });
 
-function updateWaterLevels() {
-    const plantCards = document.querySelectorAll('.plant-card');
+async function updateWaterLevels() {
+    const waterLevels = document.querySelectorAll('.water-level');
     
-    plantCards.forEach(card => {
-        const waterIndicator = card.nextElementSibling;
-        const waterLevel = waterIndicator.querySelector('.water-level');
-        const level = waterLevel.dataset.waterlevel;
+    for (const waterLevel of waterLevels) {
+        const id = waterLevel.dataset.id;
+        const level = await getWaterLevel(id);
         
-        // Update the height based on water level percentage
-        waterLevel.style.height = `${level}%`;
-        
-        // Update color based on level
-        if (level < 25) {
-            waterLevel.style.backgroundColor = '#ff4444';
-        } else if (level < 50) {
-            waterLevel.style.backgroundColor = '#ffaa44';
-        } else {
-            waterLevel.style.backgroundColor = '#27b0ffc2';
+        if (level !== null) {
+            // Update the data attribute
+            waterLevel.dataset.waterlevel = level;
+            
+            // Update the visual height
+            waterLevel.style.height = `${level}%`;
+            
+            // Update color based on level
+            if (level < 25) {
+                waterLevel.style.backgroundColor = '#ff4444';
+            } else if (level < 50) {
+                waterLevel.style.backgroundColor = '#ffaa44';
+            } else {
+                waterLevel.style.backgroundColor = '#27b0ffc2';
+            }
         }
-    });
+    }
 }

@@ -37,3 +37,10 @@ export async function waterPlant(id) {
   });
   return response.ok;
 }
+
+export async function getWaterLevel(id) {
+  const response = await fetch(`${API_URL}${id}/water-level/`);
+  if (!response.ok) return null;
+  const data = await response.json();
+  return data.water_level;
+}
