@@ -4,6 +4,7 @@ import "../styles/styles.css";                          // In Astro, you import 
 import Header from "../components/Header.astro";        
 import PlantList from "../components/PlantList.astro";
 import AddPlantForm from "../components/AddPlantForm.astro";
+import Modal from "../components/Modal.astro";
 import { getPlants } from "../../public/scripts/api.js";
 
 const plants = await getPlants();                       // Get plant data from API
@@ -19,7 +20,9 @@ const plants = await getPlants();                       // Get plant data from A
 
   <body>
     <Header />
-    <AddPlantForm />
+    <Modal id="addPlantModal">
+      <AddPlantForm />
+    </Modal>
     <PlantList plants={plants} />                 {/* Pass plant data as prop to PlantList component */} 
     
     {/* Import scripts from Public that should be rendered Client Side */} 

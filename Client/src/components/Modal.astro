@@ -5,7 +5,7 @@ const { id } = Astro.props;
 <div id={id} class="modal">
     <div class="modal-content">
         <span class="close-button">&times;</span>
-        <slot />
+        <slot />                    {/* Slot to render child components */}
     </div>
 </div>
 
