@@ -49,5 +49,30 @@
       }
     </div>
   </div>
+
+  <div class="form-group">
+    <label>Color</label>
+    <div class="color-selector">
+        {Object.entries({
+            Red: "#ff4444",
+            Orange: "#ffaa44",
+            Yellow: "#ffdd44",
+            Green: "#7f9261",
+            Blue: "#44aaff",
+            Purple: "#aa44ff"
+        }).map(([color, hex]) => (
+            <label class="color-toggle">
+                <input
+                    type="radio"
+                    name="plant_color"
+                    value={hex}
+                    class="color-checkbox"
+                />
+                <span class="color-label" style={`background-color: ${hex}`}></span>
+            </label>
+        ))}
+    </div>
+</div>
+
   <button type="submit">Add Plant</button>
 </form>

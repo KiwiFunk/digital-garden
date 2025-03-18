@@ -64,21 +64,83 @@ form {
     flex-direction: column;
     min-width: 400px;
     margin: 0 auto;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 form input,
 form select,
-form textarea,
-form button {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+form textarea {
+    padding: var(--spacing-sm);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--border-radius);
+    color: var(--text-light);
+    font-family: 'Quicksand', Arial, sans-serif;
+    transition: all 0.2s ease;
 }
 
-.form-group {
-    margin-bottom: 1rem;
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255,255,255,0.15);
 }
+
+form button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    margin-top: var(--spacing-md);
+}
+
+form button[type="submit"]:hover {
+    background-color: #6b7d4f;
+    transform: translateY(-2px);
+}
+
+/* SELECT DROPDOWN STYLING */
+form select, form select:focus {
+    appearance: none; /* Remove default styling */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23cccccc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px; /* Make room for the custom arrow */
+    outline: none;
+}
+
+
+
+form select option {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    padding: var(--spacing-sm);
+    outline: none;
+    border: none;
+}
+
+form select:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+
+/* Month Selector Styling */
 
 .month-selector {
     display: grid;
@@ -115,6 +177,43 @@ form button {
 .month-checkbox:focus + .month-label {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* FORM COLOR SELECT */
+.color-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.color-toggle {
+    position: relative;
+    cursor: pointer;
+}
+
+.color-checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.color-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 30px;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.color-checkbox:checked + .color-label {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* PLANT CARD STYLES */
