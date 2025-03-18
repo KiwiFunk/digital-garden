@@ -75,6 +75,47 @@ form button {
     border-radius: 5px;
 }
 
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.month-selector {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.month-toggle {
+    position: relative;
+    cursor: pointer;
+}
+
+.month-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.month-label {
+    display: block;
+    padding: 8px;
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+}
+
+.month-checkbox:checked + .month-label {
+    background: var(--primary-color);
+    color: white;
+}
+
+.month-checkbox:focus + .month-label {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
 /* PLANT CARD STYLES */
 .plant-container {
     display: grid;
@@ -138,6 +179,49 @@ form button {
 
 .watering-info i {
     margin-right: 5px;
+}
+
+/* HARVEST MONTHS STYLES */
+.harvest-months {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.harvest-months p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.harvest-months i {
+    margin-right: 5px;
+}
+
+.month-bars {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.month-bar {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    min-width: 24px;
+    text-align: center;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.month-bar:hover {
+    opacity: 1;
 }
 
 /* WATER INDICATOR STYLES */

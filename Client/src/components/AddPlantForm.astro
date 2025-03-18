@@ -4,7 +4,11 @@
 
 <form id="plant-form">
   <input type="text" id="name" placeholder="Plant Name" required />
-  <input type="text" id="botanical_name" placeholder="Botanical name (Optional)" />
+  <input
+    type="text"
+    id="botanical_name"
+    placeholder="Botanical name (Optional)"
+  />
   <select id="watering_frequency">
     <option value="1">DEBUG(1 hour)</option>
     <option value="24">1 Day</option>
@@ -14,5 +18,36 @@
     <option value="672">30 Days</option>
   </select>
   <textarea id="notes" placeholder="Notes (optional)" rows="3"></textarea>
+  <div class="form-group">
+    <label>Harvest Months</label>
+    <div class="month-selector">
+      {
+        [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ].map((month, index) => (
+          <label class="month-toggle">
+            <input
+              type="checkbox"
+              name="harvest_months"
+              value={month.toUpperCase()}
+              class="month-checkbox"
+            />
+            <span class="month-label">{month}</span>
+          </label>
+        ))
+      }
+    </div>
+  </div>
   <button type="submit">Add Plant</button>
 </form>
