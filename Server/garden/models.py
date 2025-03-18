@@ -11,6 +11,20 @@ class Plant(models.Model):                                      # Define our mod
     date_added = models.DateField(auto_now_add=True)            # Date the plant was added
     notes = models.TextField(blank=True, null=True)             # Optional notes about the plant
 
+    harvest_months = models.CharField(                          # Months when the plant is harvested
+        max_length=50,                                          # Set a max length to accommodate multiple choices
+        choices=[
+            ('JAN', 'January'), ('FEB', 'February'), ('MAR', 'March'), ('APR', 'April'),
+            ('MAY', 'May'), ('JUN', 'June'), ('JUL', 'July'), ('AUG', 'August'),
+            ('SEP', 'September'), ('OCT', 'October'), ('NOV', 'November'), ('DEC', 'December'),
+        ],
+        default="",
+    )
+
+    """
+    FUNCTIONS AND FIELDS TO HANDLE WATERING
+    """
+
     watering_frequency = models.IntegerField(                   # How often the plant should be watered
         choices=[
             (1, 'DEBUG (1 hr)'),                                

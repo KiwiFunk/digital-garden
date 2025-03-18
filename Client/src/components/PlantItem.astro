@@ -15,7 +15,7 @@ const { plant } = Astro.props;
                 <i class="fas fa-clock"></i>
                 Last watered: {plant.last_watered ? 
                     new Date(plant.last_watered).toLocaleDateString() : 
-                    "Not watered yet"}
+                    "N/A"}
             </p>
         </div>
 
