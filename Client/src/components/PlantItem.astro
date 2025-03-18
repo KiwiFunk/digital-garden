@@ -24,7 +24,7 @@ const { plant } = Astro.props;
                     <div class="month-bars">
                         {plant.harvest_months.split(',').filter(month => month.length > 0).map((month) => (
                             <span class="month-bar" title={month}>
-                                {month.substring(0, 1)}
+                                {month}
                             </span>
                         ))}
                     </div>

@@ -12,12 +12,7 @@ class Plant(models.Model):                                      # Define our mod
     notes = models.TextField(blank=True, null=True)             # Optional notes about the plant
 
     harvest_months = models.CharField(                          # Months when the plant is harvested
-        max_length=50,                                          # Set a max length to accommodate multiple choices
-        choices=[
-            ('JAN', 'January'), ('FEB', 'February'), ('MAR', 'March'), ('APR', 'April'),
-            ('MAY', 'May'), ('JUN', 'June'), ('JUL', 'July'), ('AUG', 'August'),
-            ('SEP', 'September'), ('OCT', 'October'), ('NOV', 'November'), ('DEC', 'December'),
-        ],
+        max_length=200,                                          # Set a max length to accommodate multiple choices
         default="",
     )
 

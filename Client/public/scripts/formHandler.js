@@ -24,7 +24,7 @@ form.addEventListener("submit", async (e) => {                          //Add  e
     watering_frequency 
   });        
 
-  console.log('Final form data:', plantData);                          //Log the form data to the console
+  console.log('Final form data:', success);                             //Log the form data to the console
 
   if (success) {                                                        //addPlant returns a bool, use to check if the request was successful   
     alert("Plant added successfully!");                                 //Alert the user that the plant was added
