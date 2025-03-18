@@ -7,6 +7,9 @@ const waterButtons = document.querySelectorAll(".water-button");
 
 document.addEventListener("DOMContentLoaded", () => {
     updateWaterLevels();
+
+    // Update water levels every minute (60000ms)
+    setInterval(updateWaterLevels, 60000);
 }
 );
 
@@ -50,7 +53,7 @@ function updateWaterLevels() {
     plantCards.forEach(card => {
         const waterIndicator = card.nextElementSibling;
         const waterLevel = waterIndicator.querySelector('.water-level');
-        const level = waterLevel.dataset.level;
+        const level = waterLevel.dataset.waterlevel;
         
         // Update the height based on water level percentage
         waterLevel.style.height = `${level}%`;
