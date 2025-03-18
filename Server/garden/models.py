@@ -11,6 +11,11 @@ class Plant(models.Model):                                      # Define our mod
     date_added = models.DateField(auto_now_add=True)            # Date the plant was added
     notes = models.TextField(blank=True, null=True)             # Optional notes about the plant
 
+    base_color = models.CharField(                              # Base color of the plant card
+        max_length=7,
+        default="#7f9261"
+    )
+
     harvest_months = models.CharField(                          # Months when the plant is harvested
         max_length=200,                                          # Set a max length to accommodate multiple choices
         default="",
