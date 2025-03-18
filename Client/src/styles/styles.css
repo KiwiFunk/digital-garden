@@ -66,6 +66,12 @@ header h1 {
     padding: 10px 25px;
     border-radius: 10px;
     background-color: #7f9261;
+    cursor: pointer;
+    user-select: none;
+}
+
+.add-plant-button:hover {
+    background-color: #6b7d4f;
 }
 
 .plant-container {
