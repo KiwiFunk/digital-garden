@@ -6,7 +6,9 @@ class Plant(models.Model):                                      # Define our mod
     name = models.CharField(max_length=50)                      # Name of the plant. CharField is used to store strings
     botanical_name = models.CharField(                          # Botanical name of the plant (Optional)
         max_length=100, 
-        default=""
+        default="",
+        blank=True,
+        null=True
     )     
     date_added = models.DateField(auto_now_add=True)            # Date the plant was added
     notes = models.TextField(blank=True, null=True)             # Optional notes about the plant
