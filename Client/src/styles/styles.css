@@ -47,6 +47,27 @@ form button {
     border-radius: 5px;
 }
 
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 20px;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.4rem;
+}
+.add-plant-button {
+    width: auto;
+    padding: 10px 25px;
+    border-radius: 10px;
+    background-color: #7f9261;
+}
+
 .plant-container {
     display: flex;
     flex-flow: row wrap;
