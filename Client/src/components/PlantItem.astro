@@ -2,7 +2,7 @@
 const { plant } = Astro.props;
 ---
 
-<div class="plant-card">
+<div class="plant-card" style={`background-color: ${plant.base_color};`}>
     <div class="card-content">
         <div class="upper-card">
             <h3>{plant.name}</h3>

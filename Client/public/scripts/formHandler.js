@@ -20,6 +20,7 @@ form.addEventListener("submit", async (e) => {                          //Add  e
     name, 
     botanical_name, 
     notes,
+    base_color: document.querySelector('input[name="plant_color"]:checked')?.value || null,
     harvest_months: selectedMonths, 
     watering_frequency 
   });        
