@@ -1,25 +1,47 @@
 ---
-//Component for displaying and styling individual plant items
-const { plant } = Astro.props;                                  // Destructure plants prop                     
+const { plant } = Astro.props;
 ---
 
-<span class="plant-card">
-    <div class="upper-card">
-        <h3>{plant.name}</h3>                                   {/* Display plant name */}
-        <h4>{plant.botanical_name}</h4>                         {/* Display plant botanical name */}
-    </div>                               
-    
-    <div class="lower-card">
-        <p>{plant.notes}</p>                                    {/* Display plant notes */}
-        <p>Last watered on: {plant.last_watered ? String(plant.last_watered).slice(0, 10) : "Not watered yet!"}</p>
+<div class="plant-card">
+    <div class="card-content">
+        <div class="upper-card">
+            <h3>{plant.name}</h3>
+            <h4>{plant.botanical_name}</h4>
+        </div>
+        
+        <div class="lower-card">
+            <p class="notes">{plant.notes}</p>
+            <p class="watering-info">
+                <i class="fas fa-clock"></i>
+                Last watered: {plant.last_watered ? 
+                    new Date(plant.last_watered).toLocaleDateString() : 
+                    "Not watered yet"}
+            </p>
+        </div>
+
+        <div class="card-controls">
+            <button class="btn water-button" data-id={plant.id}>
+                <i class="fas fa-tint"></i>
+                Water
+            </button>
+            <button class="btn delete-button" data-id={plant.id}>
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
     </div>
 
-    <div class="card-controls">
-        <span class="btn delete-button" data-id={plant.id}>Delete</span> 
-        <span class="btn water-button" data-id={plant.id}>Water</span>
+    <div class="water-indicator-wrapper">
+        <div class="water-indicator">
+            <div 
+                class="water-level" 
+                data-id={plant.id} 
+                style={`height: ${plant.water_level}%;
+                       background-color: ${
+                           plant.water_level > 50 ? '#27b0ff' :
+                           plant.water_level > 25 ? '#ffaa44' : '#ff4444'
+                       }`}
+            ></div>
+        </div>
+        <span class="water-level-text">{plant.water_level}%</span>
     </div>
-</span>
-
-<span class="water-indicator">
-    <span class="water-level" data-id={plant.id} data-waterlevel={plant.water_level}></span>
-</span>
+</div>

@@ -2,9 +2,24 @@
 //Display the logo and other header related content.
 ---
 <header>
-    <h1>Verdant</h1>
-    <p>Welcome to Your Digital Garden 🌱</p>
-
-    <!-- Open Add Plant Form -->
-    <span class="add-plant-button">Add Plant</span>
+    <div class="header-left">
+        <h1>Verdant</h1>
+        <p>Your Digital Garden 🌱</p>
+    </div>
+    <span class="add-plant-button">
+        <i class="fas fa-plus"></i>
+        Add Plant
+    </span>
 </header>
+
+<style>
+    .header-left {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .header-left p {
+        opacity: 0.7;
+    }
+</style>

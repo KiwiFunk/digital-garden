@@ -43,4 +43,22 @@ const { id } = Astro.props;
     .close-button:hover {
         color: var(--primary-color);
     }
+
+    form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    margin: 0 auto;
+    }
+
+    form input,
+    form select,
+    form textarea,
+    form button {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
 </style>
