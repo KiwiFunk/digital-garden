@@ -4,7 +4,9 @@ from rest_framework.response import Response                        #DRF utility
 from rest_framework import status                                   #DRF utility for returning HTTP status codes
 from .models import Plant                                           #Import the Plant model
 from .serializers import PlantSerializer                            #Translate objects to JSON and vice versa
-    
+
+# API ENDPOINTS
+
 class PlantList(APIView):
     def get(self, request):
         plants = Plant.objects.all()                                #Fetch all the plants from the database
@@ -44,6 +46,16 @@ class PlantDetail(APIView):
             plant.delete()                                          #Delete the plant
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Plant.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    def get_water_level(self, request, pk):                         #Get the water level of the plant
+        try:
+            plant = Plant.objects.get(pk=pk)                        #Fetch the plant with the given primary key
+            return Response({                                       #Return the water level of the plant
+                'water_level': plant.water_level
+                'last_watered': plant.last_watered
+            })
+        except Plant.DoesNotExist:                                  #Return a 404 if the plant does not exist
             return Response(status=status.HTTP_404_NOT_FOUND)
         
     """
