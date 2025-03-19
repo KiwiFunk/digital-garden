@@ -1,11 +1,11 @@
 ---
 // Component for displaying and containing plant data
-import PlantItem from "./PlantItem.astro";              // Import PlantItem component
+import PlantCard from "./PlantCard.astro";              // Import PlantItem component
 const { plants } = Astro.props;                         // Destructure plants prop from props object
 ---
 
 <div class="plant-container">
   {plants.map((plant) => (                              // Loop through plants array
-    <PlantItem plant={plant} />                         // Pass plant data to PlantItem component
+    <PlantCard plant={plant} />                         // Pass plant data to PlantItem component
   ))}
 </div>
