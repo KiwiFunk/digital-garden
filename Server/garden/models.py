@@ -21,6 +21,8 @@ class Plant(models.Model):                                      # Define our mod
     harvest_months = models.CharField(                          # Months when the plant is harvested
         max_length=200,                                          # Set a max length to accommodate multiple choices
         default="",
+        blank=True,                                             # Optional input field
+        null=True                                               # Allow null value in the database.
     )
 
     """
