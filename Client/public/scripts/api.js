@@ -72,13 +72,30 @@ export async function getWaterLevel(id) {
 }
 
 export async function updatePlant(id, data) {
-  const response = await fetch(`${API_URL}${id}/`, {
-      method: 'PUT',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-  });
-  
-  return response;
+  try {
+      const response = await fetch(`${API_URL}${id}/`, {        //Use fetch to send a PUT request to the API URL with the plant ID
+          method: 'PUT',                                        //Set the method to PUT
+          headers: {
+              'Content-Type': 'application/json',               //Set the headers (metadata that describes the data)     
+          },
+          body: JSON.stringify(data)                            //Convert the data object to JSON and send it in the body          
+      });
+
+      if (response.ok) {
+          const updatedPlant = await response.json();           //If the request was successful, return the updated plant
+          return {                                              //Return a boolean indicating if the request was successful and the updated plant
+              success: true,
+              plant: updatedPlant
+          };
+      }
+      return {                                                  //If the request was not successful, return an error message and a boolean indicating the request was not successful                 
+          success: false,
+          error: 'Failed to update plant'
+      };
+  } catch (error) {                                             //If there was a network error, return an error message and a boolean indicating the request was not successful
+      return {
+          success: false,
+          error: 'Network error while updating plant'
+      };
+  }
 }
