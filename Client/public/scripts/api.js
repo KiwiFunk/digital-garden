@@ -44,3 +44,15 @@ export async function getWaterLevel(id) {
   const data = await response.json();
   return data.water_level;
 }
+
+export async function updatePlant(id, data) {
+  const response = await fetch(`${API_URL}${id}/`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+  });
+  
+  return response;
+}
