@@ -47,15 +47,23 @@ backButtons.forEach(button => {
 // Add event listener to each delete button
 deleteButtons.forEach(button => {
     button.addEventListener("click", async (e) => {
+        const id = e.target.dataset.id;                                     //Get the ID of the plant to delete
+        const card = e.target.closest('.plant-card');                       //Get the card element to remove       
         
-        const id = e.target.dataset.id;                         // Get the ID of the plant to delete
-        const success = await deletePlant(id);
+        const result = await deletePlant(id);                               //Call the deletePlant function from api.js with the plant ID
         
-        if (success) {
-            alert("Plant deleted successfully!");
-            window.location.reload();
+        if (result.success) {                                               //If the request was successful remove the card from the DOM
+            // Add transition styles temporarily
+            card.style.transition = 'opacity 0.3s, transform 0.3s';
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            
+            // Remove card after animation
+            setTimeout(() => {
+                card.remove();
+            }, 300);
         } else {
-            alert("Failed to delete plant. Please try again.");
+            alert(result.error);
         }
     });
 });
