@@ -54,14 +54,14 @@ deleteButtons.forEach(button => {
         
         if (result.success) {                                               //If the request was successful remove the card from the DOM
             // Add transition styles temporarily
-            card.style.transition = 'opacity 0.3s, transform 0.3s';
+            card.style.transition = 'opacity 0.1s, transform 0.1s';
             card.style.opacity = '0';
             card.style.transform = 'scale(0.95)';
             
             // Remove card after animation
             setTimeout(() => {
                 card.remove();
-            }, 300);
+            }, 100);
         } else {
             alert(result.error);
         }
