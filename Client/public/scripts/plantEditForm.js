@@ -40,17 +40,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update plant info. Get all the fields from the DOM and update them with the new data
                     const nameElement = cardContainer.querySelector('#card-front h3');
                     const botanicalNameElement = cardContainer.querySelector('#card-front h4');
-                    const notesElement = cardContainer.querySelector('#card-front .notes');
                     const harvestMonthsContainer = cardContainer.querySelector('#card-front .harvest-months');
+                    
                     
                     nameElement.textContent = plant.name;
                     
                     if (botanicalNameElement) {
                         botanicalNameElement.textContent = plant.botanical_name || '';
                     }
-                    
-                    if (notesElement) {
-                        notesElement.textContent = plant.notes || '';
+
+                    //CONDITIONALLY RENDERED FIELDS
+                    const lowerCard = cardContainer.querySelector('.lower-card');               //Get the lower card element where our conditional fields live
+
+                    //Handle notes 
+                    let notesElement = cardContainer.querySelector('#card-front .notes');
+                    if (plant.notes) {
+                        if (!notesElement) {                                                    //If the notes element does not exist, create it
+                            notesElement = document.createElement('div');
+                            notesElement.className = 'notes';
+                            lowerCard.insertBefore(notesElement, lowerCard.firstChild);         //Insert the notes element at the beginning of the lower card
+                        }
+                        notesElement.textContent = plant.notes;                                 //Populate the new notes element with the plant notes   
+                    } else if (notesElement) {
+                        notesElement.remove();                                                  //If there is no notes content, but the notes element exists, remove it           
                     }
                     
                     // Update harvest months
@@ -71,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             harvestMonthsContainer.style.display = 'none';
                         }
                     }
+
+                    
 
                 } else {
                     throw new Error(result.error);
