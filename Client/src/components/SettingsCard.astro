@@ -32,13 +32,13 @@ const { plant } = Astro.props;                             // Destructure plant 
                 value={plant.botanical_name || ''}
                 placeholder="Botanical name (Optional)"
             />
-            <select name="watering_frequency" value={plant.watering_frequency}>
-                <option value="1">DEBUG(1 hour)</option>
-                <option value="24">1 Day</option>
-                <option value="48">2 Days</option>
-                <option value="168">7 Days</option>
-                <option value="336">14 Days</option>
-                <option value="672">30 Days</option>
+            <select name="watering_frequency">
+                <option value="1" selected={plant.watering_frequency === 1}>DEBUG(1 hour)</option>
+                <option value="24" selected={plant.watering_frequency === 24}>1 Day</option>
+                <option value="48" selected={plant.watering_frequency === 48}>2 Days</option>
+                <option value="168" selected={plant.watering_frequency === 168}>7 Days</option>
+                <option value="336" selected={plant.watering_frequency === 336}>14 Days</option>
+                <option value="672" selected={plant.watering_frequency === 672}>30 Days</option>
             </select>
             <textarea 
                 name="notes" 
