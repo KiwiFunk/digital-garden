@@ -374,6 +374,7 @@ form select:hover {
 
 .month-bars {
     display: flex;
+    flex-flow: row wrap;
     gap: 4px;
     margin-top: 8px;
 }
