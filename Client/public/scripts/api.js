@@ -18,12 +18,21 @@ export async function addPlant(data) {
   return response.ok;                                       //Return a boolean indicating if the request was successful
 }
 
-//Perform a DELETE request to remove a plant from the database
 export async function deletePlant(id) {
-  const response = await fetch(`${API_URL}${id}/`, {       //Use fetch with the plant ID to send a DELETE request
-    method: "DELETE",                                       //Set the method to DELETE
-  });
-  return response.ok;                                       //Return a boolean indicating if the request was successful
+  try {
+      const response = await fetch(`${API_URL}${id}/`, {          //Use fetch to send a DELETE request to the API URL with the plant ID
+          method: "DELETE",                                       //Set the method to DELETE
+      });
+      return { 
+          success: response.ok,       
+          error: response.ok ? null : 'Failed to delete plant'  
+      };
+  } catch (error) {
+      return { 
+          success: false, 
+          error: 'Network error while deleting plant'
+      };
+  }
 }
 
 //Send a POST request to water a plant using the water_plant() function
