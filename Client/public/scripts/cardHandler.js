@@ -112,6 +112,13 @@ async function updateWaterLevels() {
             } else {
                 waterLevel.style.backgroundColor = '#27b0ffc2';
             }
+
+            //Update the percentage display
+            const waterLevelPercentage = waterLevel.closest('.water-indicator-wrapper').querySelector('.water-level-text');         //Get the water level text element from the parent water indicator wrapper
+
+            if (waterLevelPercentage) {
+                waterLevelPercentage.textContent = `${level}%`;                                                                     //Update the text content with the new water level percentage
+            }
         }
     }
 }
