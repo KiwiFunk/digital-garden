@@ -19,17 +19,30 @@ document.addEventListener("DOMContentLoaded", () => {
 // Add event listener to each edit button to open card settings pane
 editButtons.forEach(button => {
     button.addEventListener("click", (e) => {
-        const id = e.target.dataset.id;
-        const cardContainer = document.querySelector.querySelector(".plant-card");
-        const cardFront = document.getElementById("card-front");
-        const cardBack = document.getElementById("card-back");
+        const id = e.target.closest('.edit-button').dataset.id;
+        const cardContainer = e.target.closest('.plant-card');
+        const cardFront = cardContainer.querySelector('#card-front');
+        const cardBack = cardContainer.querySelector('#card-back');
 
-        cardFront.toggleAttribute("hidden");
-        cardContainer.toggleAttribute("settings-background");
-        cardBack.toggleAttribute("hidden");
-        
+        cardFront.classList.toggle('hidden');
+        cardBack.classList.toggle('hidden');
+        cardContainer.classList.toggle('settings-background');
     });
-})
+});
+
+// Add event listener to each back button
+backButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        const id = e.target.closest('.back-button').dataset.id;
+        const cardContainer = e.target.closest('.plant-card');
+        const cardFront = cardContainer.querySelector('#card-front');
+        const cardBack = cardContainer.querySelector('#card-back');
+
+        cardFront.classList.toggle('hidden');
+        cardBack.classList.toggle('hidden');
+        cardContainer.classList.toggle('settings-background');
+    });
+});
 
 // Add event listener to each delete button
 deleteButtons.forEach(button => {
