@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update plant info. Get all the fields from the DOM and update them with the new data
                     const nameElement = cardContainer.querySelector('#card-front h3');
                     const botanicalNameElement = cardContainer.querySelector('#card-front h4');
-                    const harvestMonthsContainer = cardContainer.querySelector('#card-front .harvest-months');
                     
                     
                     nameElement.textContent = plant.name;
@@ -65,26 +64,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         notesElement.remove();                                                  //If there is no notes content, but the notes element exists, remove it           
                     }
                     
-                    // Update harvest months
-                    if (harvestMonthsContainer) {
-                        if (plant.harvest_months) {
-                            const monthBars = plant.harvest_months
-                                .split(',')
-                                .filter(month => month.trim())
-                                .map(month => `
-                                    <span class="month-bar" title="${month}">
-                                        ${month}
-                                    </span>
-                                `).join('');
+                    // Handle harvest months
+                    let harvestMonthsContainer = cardContainer.querySelector('#card-front .harvest-months');
+                    if (plant.harvest_months && plant.harvest_months.split(',').some(month => month.trim().length > 0)) {
+                        if (!harvestMonthsContainer) {
+                            // Create harvest months container if it doesn't exist
+                            harvestMonthsContainer = document.createElement('div');
+                            harvestMonthsContainer.className = 'harvest-months';
+                            harvestMonthsContainer.innerHTML = `
+                                <p><i class="fas fa-seedling"></i> Harvest Months:</p>
+                                <div class="month-bars"></div>
+                            `;
                             
-                            harvestMonthsContainer.querySelector('.month-bars').innerHTML = monthBars;
-                            harvestMonthsContainer.style.display = monthBars ? '' : 'none';
-                        } else {
-                            harvestMonthsContainer.style.display = 'none';
+                            lowerCard.appendChild(harvestMonthsContainer);                      //Append the harvest months container to the lower card
                         }
+        
+                        const monthBars = plant.harvest_months
+                            .split(',')
+                            .filter(month => month.trim())
+                            .map(month => `
+                                <span class="month-bar" title="${month.trim()}">
+                                    ${month.trim()}
+                                </span>
+                            `).join('');
+            
+                        harvestMonthsContainer.querySelector('.month-bars').innerHTML = monthBars;
+                        harvestMonthsContainer.style.display = monthBars ? '' : 'none';
+                    } else if (harvestMonthsContainer) {
+                        harvestMonthsContainer.remove();
                     }
-
-                    
 
                 } else {
                     throw new Error(result.error);
