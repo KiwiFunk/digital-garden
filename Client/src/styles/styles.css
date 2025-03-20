@@ -470,6 +470,10 @@ form select:hover {
 }
 
 /* CARD SETTINGS STYLES */
+.settings-background {
+    background-color: #656565 !important;
+}
+
 .settings-container {
     display: flex;
     flex-direction: column;

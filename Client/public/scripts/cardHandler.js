@@ -5,6 +5,8 @@ import { getWaterLevel } from './api.js';
 // Use querySelectorAll to get all buttons of each type
 const deleteButtons = document.querySelectorAll(".delete-button");
 const waterButtons = document.querySelectorAll(".water-button");
+const editButtons = document.querySelectorAll(".edit-button");
+const backButtons = document.querySelectorAll(".back-button");
 
 document.addEventListener("DOMContentLoaded", () => {
     updateWaterLevels();
@@ -13,6 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateWaterLevels, 60000);
 }
 );
+
+// Add event listener to each edit button to open card settings pane
+editButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        const id = e.target.dataset.id;
+        const cardContainer = document.querySelector.querySelector(".plant-card");
+        const cardFront = document.getElementById("card-front");
+        const cardBack = document.getElementById("card-back");
+
+        cardFront.toggleAttribute("hidden");
+        cardContainer.toggleAttribute("settings-background");
+        cardBack.toggleAttribute("hidden");
+        
+    });
+})
 
 // Add event listener to each delete button
 deleteButtons.forEach(button => {
