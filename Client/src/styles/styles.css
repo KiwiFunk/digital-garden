@@ -312,7 +312,8 @@ form select:hover {
 
 /* ELEMENT STYLING */
 
-.upper-card h3 {
+.upper-card h3,
+.settings-header h3 {
     font-size: 1.8rem;
     margin-bottom: var(--spacing-sm);
     color: white;
@@ -484,6 +485,10 @@ form select:hover {
     flex-grow: 0;       /* Prevents growing */
     flex-shrink: 0;     /* Prevents shrinking */
     flex-basis: auto;   /* Size based on content */
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 
 }
 
