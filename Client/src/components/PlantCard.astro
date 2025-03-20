@@ -1,10 +1,13 @@
 ---
 const { plant } = Astro.props;
+import SettingsCard from "./SettingsCard.astro";
 ---
 
 <div class="plant-card" style={`background-color: ${plant.base_color};`}>
+
+    <SettingsCard class="hidden" />
     
-    <div class="card-data">
+    <div id="card-front" class="card-data">
 
         <div class="details-pane">
 

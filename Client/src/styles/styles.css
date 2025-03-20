@@ -21,6 +21,10 @@
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     font-family: 'Quicksand', Arial, sans-serif;
     background-color: var(--background-color);
@@ -229,6 +233,7 @@ form select:hover {
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
     height: 400px;
+    max-width: 400px;
 }
 
 .card-data {
