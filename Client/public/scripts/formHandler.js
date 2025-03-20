@@ -12,15 +12,16 @@ form.addEventListener("submit", async (e) => {                          //Add  e
   const notes = document.getElementById("notes").value;
 
   // Get selected months
-  const selectedMonths = Array.from(document.querySelectorAll('.month-checkbox:checked'))
+  const selectedMonths = Array.from(document.querySelectorAll('#plant-form .month-checkbox:checked'))   //Get all checked checkboxes from the plant form
   .map(checkbox => checkbox.value)
   .join(',');
+  console.log(selectedMonths);
 
   const success = await addPlant({                                      //Call the addPlant function with the form data    
     name, 
     botanical_name, 
     notes,
-    base_color: document.querySelector('input[name="plant_color"]:checked')?.value || null,
+    base_color: document.querySelector('input[name="plant_color"]:checked')?.value || '#7f9261', // Default color
     harvest_months: selectedMonths, 
     watering_frequency 
   });        
