@@ -459,6 +459,60 @@ form select:hover {
     transform: translateY(-2px);
 }
 
+.edit-button {
+    background-color: rgba(255,255,255,0.1);
+    color: #ffffff;
+}
+
+.edit-button:hover {
+    background-color: #ffffffec;
+    color: rgb(0, 0, 0);
+}
+
+/* CARD SETTINGS STYLES */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.settings-header {
+    flex-grow: 0;       /* Prevents growing */
+    flex-shrink: 0;     /* Prevents shrinking */
+    flex-basis: auto;   /* Size based on content */
+
+}
+
+.settings-forms {
+    flex-grow: 2;
+    
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+
+}
+
+.settings-header h3 {
+
+}
+
+.settings-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--spacing-sm);
+
+}
+
+.back-button {
+    background-color: rgba(255,255,255,0.1);
+    color: #ffffff;
+}
+
+.back-button:hover {
+    background-color: #ffffffec;
+    color: rgb(0, 0, 0);
+}
+
 .delete-button {
     background-color: rgba(255,255,255,0.1);
     color: #ff4444;

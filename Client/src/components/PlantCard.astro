@@ -4,8 +4,10 @@ import SettingsCard from "./SettingsCard.astro";
 ---
 
 <div class="plant-card" style={`background-color: ${plant.base_color};`}>
-
-    <SettingsCard class="hidden" />
+    
+    <div id="card-back" class="hidden">
+        <SettingsCard plant={plant} />
+    </div>
     
     <div id="card-front" class="card-data">
 
@@ -47,8 +49,8 @@ import SettingsCard from "./SettingsCard.astro";
                     <i class="fas fa-tint"></i>
                     Water
                 </button>
-                <button class="btn delete-button" data-id={plant.id} aria-label="Delete plant">
-                    <i class="fas fa-trash"></i>
+                <button class="btn edit-button" data-id={plant.id} aria-label="Edit plant">
+                    <i class="fas fa-cog"></i>
                 </button>
             </div>
         </div>
