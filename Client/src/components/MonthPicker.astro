@@ -1,0 +1,28 @@
+<div class="month-selector">
+    {
+        [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ].map((month, index) => (
+            <label class="month-toggle">
+                <input
+                    type="checkbox"
+                    name="harvest_months"
+                    value={month.toUpperCase()}
+                    class="month-checkbox"
+                />
+                <span class="month-label">{month}</span>
+            </label>
+        ))
+    }
+</div>

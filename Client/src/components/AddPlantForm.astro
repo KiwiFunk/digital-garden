@@ -1,5 +1,7 @@
 ---
 //Component to hold the 'Add Plant' form
+import ColorPicker from "./ColorPicker.astro"
+import MonthPicker from "./MonthPicker.astro"
 ---
 
 <form id="plant-form">
@@ -20,58 +22,12 @@
   <textarea id="notes" placeholder="Notes (optional)" rows="3"></textarea>
   <div class="form-group">
     <label>Harvest Months</label>
-    <div class="month-selector">
-      {
-        [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ].map((month, index) => (
-          <label class="month-toggle">
-            <input
-              type="checkbox"
-              name="harvest_months"
-              value={month.toUpperCase()}
-              class="month-checkbox"
-            />
-            <span class="month-label">{month}</span>
-          </label>
-        ))
-      }
-    </div>
+    <MonthPicker />
   </div>
 
   <div class="form-group">
     <label>Color</label>
-    <div class="color-selector">
-        {Object.entries({
-            Red: "#ff4444",
-            Orange: "#FF7635",
-            Yellow: "#ffdd44",
-            Green: "#7f9261",
-            Blue: "#44aaff",
-            Purple: "#aa44ff"
-        }).map(([color, hex]) => (
-            <label class="color-toggle">
-                <input
-                    type="radio"
-                    name="plant_color"
-                    value={hex}
-                    class="color-checkbox"
-                />
-                <span class="color-label" style={`background-color: ${hex}`}></span>
-            </label>
-        ))}
-    </div>
+    <ColorPicker />
 </div>
 
   <button type="submit">Add Plant</button>

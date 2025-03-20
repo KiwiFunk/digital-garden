@@ -1,4 +1,7 @@
 ---
+import ColorPicker from "./ColorPicker.astro";
+import MonthPicker from "./MonthPicker.astro";
+
 const { plant } = Astro.props;                             // Destructure plant prop from props object
 ---
 <div class="settings-container">
@@ -15,8 +18,77 @@ const { plant } = Astro.props;                             // Destructure plant 
     </div>
 
     <div class="settings-forms">
-    
+        <form id="settings-form" data-id={plant.id}>
+            <input 
+                type="text" 
+                name="name" 
+                value={plant.name} 
+                placeholder="Plant Name" 
+                required 
+            />
+            <input
+                type="text"
+                name="botanical_name"
+                value={plant.botanical_name || ''}
+                placeholder="Botanical name (Optional)"
+            />
+            <select name="watering_frequency" value={plant.watering_frequency}>
+                <option value="1">DEBUG(1 hour)</option>
+                <option value="24">1 Day</option>
+                <option value="48">2 Days</option>
+                <option value="168">7 Days</option>
+                <option value="336">14 Days</option>
+                <option value="672">30 Days</option>
+            </select>
+            <textarea 
+                name="notes" 
+                placeholder="Notes (optional)" 
+                rows="2"
+            >{plant.notes}</textarea>
 
+            <div class="form-group">
+                <div class="month-selector">
+                    {["Jan","Feb","Mar","Apr","May","Jun",
+                      "Jul","Aug","Sep","Oct","Nov","Dec"]
+                        .map(month => (
+                            <label class="month-toggle">
+                                <input
+                                    type="checkbox"
+                                    name="harvest_months"
+                                    value={month.toUpperCase()}
+                                    class="month-checkbox"
+                                    checked={plant.harvest_months?.includes(month.toUpperCase())}
+                                />
+                                <span class="month-label">{month}</span>
+                            </label>
+                    ))}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="color-selector">
+                    {Object.entries({
+                        Red: "#ff4444",
+                        Orange: "#F98234",
+                        Yellow: "#ffdd44",
+                        Green: "#7f9261",
+                        Blue: "#44aaff",
+                        Purple: "#aa44ff"
+                    }).map(([color, hex]) => (
+                        <label class="color-toggle">
+                            <input
+                                type="radio"
+                                name="base_color"
+                                value={hex}
+                                class="color-checkbox"
+                                checked={plant.base_color === hex}
+                            />
+                            <span class="color-label color-label-sm" style={`background-color: ${hex}`}></span>
+                        </label>
+                    ))}
+                </div>
+            </div>
+        </form>
     </div>
 
 </div>
