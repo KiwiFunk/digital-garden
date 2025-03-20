@@ -37,16 +37,33 @@ export async function deletePlant(id) {
 
 //Send a POST request to water a plant using the water_plant() function
 export async function waterPlant(id) {
-  const response = await fetch(`${API_URL}${id}/`, {        
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ "action": "water" }),                                       
-  });
-  return response.ok;
-}
+  try {
+      const response = await fetch(`${API_URL}${id}/`, {          //Use fetch to send a POST request to the API URL with the plant ID
+          method: "POST",
+          headers: {                                              //Set the headers (metadata that describes the data)              
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ "action": "water" }),            //Add the data to specify the action as "water" then convert it to JSON
+      });
 
+      if (response.ok) {                                          //If the request was successful, return the last watered date
+          const data = await response.json();
+          return {
+              success: true,
+              last_watered: data.last_watered
+          };
+      }
+      return {
+          success: false,
+          error: 'Failed to water plant'
+      };
+  } catch (error) {
+      return {
+          success: false,
+          error: 'Network error while watering plant'
+      };
+  }
+}
 export async function getWaterLevel(id) {
   const response = await fetch(`${API_URL}${id}/water-level/`);
   if (!response.ok) return null;

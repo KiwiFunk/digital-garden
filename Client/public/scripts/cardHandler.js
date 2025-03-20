@@ -73,14 +73,18 @@ waterButtons.forEach(button => {
     button.addEventListener("click", async (e) => {
 
         const id = e.target.dataset.id;
-        const success = await waterPlant(id);
+        const card = e.target.closest('.plant-card');                           // Get the card element to update the last watered date
+        const result = await waterPlant(id);
 
-        if (success) {
-            alert("Plant watered successfully!");
-            updateWaterLevels();
-            window.location.reload();
+        if (result.success) {
+            updateWaterLevels();                                                //Update the water levels after watering the plant
+            const wateringInfo = card.querySelector('.watering-info');          //Get the watering info element and update the DOM content with new last watered date
+            wateringInfo.innerHTML = `                                              
+                <i class="fas fa-clock"></i>
+                Last watered: ${new Date(result.last_watered).toLocaleDateString()}
+            `;
         } else {
-            alert("Failed to water plant. Please try again.");
+            alert(result.error || "Failed to water plant. Please try again.");
         }
 
     });
